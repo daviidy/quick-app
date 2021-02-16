@@ -6,10 +6,90 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%=javascript_include_tag "https://kit.fontawesome.com/d86848cfe0.js"  %>
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-sm bg-white border-bottom fixed-top">
+        <ul class="navbar-nav flex-row align-items-center">
+          <li class="nav-item ml-3">
+            <img class="img-fluid w-50" src="https://cdn.shopify.com/s/files/1/0522/4569/2587/files/Logo_300x300.png?v=1609707864" alt="logo">
+          </li>
+
+          <li class="nav-item">
+            <a href='#' class="nav-link menu-link">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a href='#' class="nav-link menu-link">Nos services</a>
+          </li>
+          <li class="nav-item">
+            <a href='#' class="nav-link menu-link">Nos filles</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto align-items-center">
+          <li class="nav-item">
+            <a href="#" class="p-2 bg-color-main text-white rounded nav-link">
+              Connexion
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              <img class="rounded-circle img-fluid user-avatar" src="https://secure.gravatar.com/avatar/9c275cba24f7c939201cda28f832f8e0?s=80" alt="User">
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Link 1</a>
+              <a class="dropdown-item" href="#">Link 2</a>
+              <a class="dropdown-item" href="#">Link 3</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- mobile nav -->
+      <nav class="navbar navbar-expand-sm bg-white border-bottom fixed-top d-md-none">
+        <ul class="navbar-nav flex-row align-items-center w-100 d-flex justify-content-between">
+          <li class="nav-item">
+            <a href="#">
+              <i class="fas fa-bars hamburger acumin-gray-color"></i>
+            </a>
+          </li>
+          <li class="nav-item ml-3">
+            <img src="https://cdn.shopify.com/s/files/1/0522/4569/2587/files/Logo_300x300.png?v=1609707864" alt="logo">
+          </li>
+          <li class="nav-item">
+            <a href="#">
+              <i class="fas fa-search hamburger acumin-gray-color"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <% if flash[:notice] %>
+      <div class="row status">
+        <div class="col-12">
+          <div class="alert alert-success mr-auto ml-auto w-50 mt-3">
+            <strong><%= notice %></strong>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <%= yield %>
+    </main>
+
+    <script>
+
+      $('.hamburger').click(function() {
+        if ($(window).width() < 768) {
+          $('.side-menu').toggleClass('d-none');
+          $('#overlay').fadeToggle(300);
+        }
+      });
+
+    </script>
   </body>
 </html>
